@@ -1,0 +1,15 @@
+def sys_write = builtin io_write;
+
+def write(bytes: String) -> Void {
+    sys_write(bytes)
+}
+
+def write_stdout(bytes: String) -> Void {
+    write(bytes)
+}
+
+def write_stderr(bytes: String) -> Void {
+    write(bytes)
+}
+
+def[T] retain(value: T) -> T { value }
