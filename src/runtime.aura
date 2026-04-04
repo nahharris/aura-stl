@@ -1,15 +1,69 @@
-def sys_write = builtin io_write;
+def __rt_exit = builtin rt_exit;
+def __rt_fd_read = builtin rt_fd_read;
+def __rt_fd_write = builtin rt_fd_write;
+def __rt_fd_open = builtin rt_fd_open;
+def __rt_fd_close = builtin rt_fd_close;
+def __rt_fd_seek = builtin rt_fd_seek;
+def __rt_mem_map = builtin rt_mem_map;
+def __rt_mem_unmap = builtin rt_mem_unmap;
+def __rt_mem_protect = builtin rt_mem_protect;
+def __rt_time_now_ns = builtin rt_time_now_ns;
+def __rt_random_fill = builtin rt_random_fill;
 
-def write(bytes: String) -> Void {
-    sys_write(bytes)
+def exit(code: Int32) -> Never {
+    __rt_exit(code)
 }
 
-def write_stdout(bytes: String) -> Void {
+def fd_read(fd: Int32, dst: Slice[UInt8]) -> ISize {
+    __rt_fd_read(fd, dst)
+}
+
+def fd_write(fd: Int32, src: Slice[UInt8]) -> ISize {
+    __rt_fd_write(fd, src)
+}
+
+def fd_open(path: Slice[UInt8], flags: UInt32, mode: UInt32) -> Int32 {
+    __rt_fd_open(path, flags, mode)
+}
+
+def fd_close(fd: Int32) -> Int32 {
+    __rt_fd_close(fd)
+}
+
+def fd_seek(fd: Int32, offset: Int64, whence: UInt32) -> Int64 {
+    __rt_fd_seek(fd, offset, whence)
+}
+
+def mem_map(len: USize, prot: UInt32, flags: UInt32) -> Ptr[UInt8] {
+    __rt_mem_map(len, prot, flags)
+}
+
+def mem_unmap(ptr: Ptr[UInt8], len: USize) -> Int32 {
+    __rt_mem_unmap(ptr, len)
+}
+
+def mem_protect(ptr: Ptr[UInt8], len: USize, prot: UInt32) -> Int32 {
+    __rt_mem_protect(ptr, len, prot)
+}
+
+def time_now_ns() -> UInt64 {
+    __rt_time_now_ns()
+}
+
+def random_fill(dst: Slice[UInt8]) -> Int32 {
+    __rt_random_fill(dst)
+}
+
+def write(bytes: Slice[UInt8]) -> ISize {
+    fd_write(1, bytes)
+}
+
+def write_stdout(bytes: Slice[UInt8]) -> ISize {
     write(bytes)
 }
 
-def write_stderr(bytes: String) -> Void {
-    write(bytes)
+def write_stderr(bytes: Slice[UInt8]) -> ISize {
+    fd_write(2, bytes)
 }
 
 def[T] retain(value: T) -> T { value }
