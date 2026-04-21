@@ -1,1 +1,39 @@
 def Bool = enum(false, true);
+
+def false = .false;
+def true = .true;
+
+def Bool.not(self: Bool) -> Bool {
+    false -> true,
+    true -> false,
+}
+
+def Bool.and(self: Bool, other: Bool) -> Bool {
+    false, _ -> false,
+    _, other -> other
+}
+
+def Bool.or(self: Bool, other: Bool) -> Bool {
+    true, _ -> true,
+    _, other -> other,
+}
+
+def Bool.into(self: Bool) -> String {
+    true -> "true",
+    false -> "false",
+}
+
+def Bool.from(other: String) -> Bool {
+    "true" -> true,
+    "false" -> false,
+}
+
+def Bool.into(self: Bool) -> Int {
+    true -> 1,
+    false -> 0,
+}
+
+def Bool.from(other: Int) -> Bool {
+    true -> 1,
+    false -> 0,
+}

@@ -1,1 +1,72 @@
-def[T] Option = enum(null: (), some: T);
+def[T] Option = enum(null, some: T);
+
+def null = .null;
+
+docs["
+# Option.and
+
+Returns the second option if the first is `some`, otherwise `null`.
+"]
+def[T] Option[T].and(self: Option[T], other: Option[T]) -> Option[T] {
+    null, _ -> null,
+    _, _ -> other,
+}
+
+docs["
+# Option.and
+
+Returns the result of the function if the option is `some`, otherwise `null`.
+"]
+def[T] Option[T].and(self: Option[T], then: Func[T, Option[T]]) -> Option[T] {
+    null, _ -> null,
+    .some(value), _ -> with(value),
+}
+
+docs["
+# Option.or
+
+Returns the second option if the first is `some`, otherwise `null`.
+"]
+def[T] Option[T].or(self: Option[T], other: Option[T]) -> Option[T] {
+    null, _ -> other,
+    _, _ -> self,
+}
+
+docs["
+# Option.or
+
+Returns the result of the function if the option is `some`, otherwise `null`.
+"]
+def[T] Option[T].or(self: Option[T], else: Func[Void, Option[T]]) -> Option[T] {
+    null, _ -> else(),
+    _, _ -> self,
+}
+
+docs["
+# Option.map
+
+Returns the result of the function if the option is `some`, otherwise `null`.
+"]
+def[T, U] Option[T].map(self: Option[T], with: Func[T, U]) -> Option[U] {
+    null, _ -> null,
+    .some(value), _ -> .some(with(value))
+}
+
+docs["
+# Option.flat_map
+
+Returns the result of the function if the option is `some`, otherwise `null`.
+"]
+def[T, U] Option[T].flat_map(self: Option[T], with: Func[T, Option[U]]) -> Option[U] {
+    null, _ -> null,
+    .some(value), _ -> with(value),
+}
+
+docs["
+# Option.default
+
+Returns the option if it is `some`, otherwise `null`.
+"]
+def[T] Option[T].default() -> Option[T] {
+    null
+}
