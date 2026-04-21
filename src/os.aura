@@ -1,7 +1,13 @@
 use runtime = "runtime";
 
-def ExitCode = enum(success, failure);
+def ExitCode = enum(success, failure, custom: Int);
 
-def exit(code: Any) -> Void {
-    runtime.exit_process(0);
+def ExitCode.into(self: ExitCode) -> Int {
+    .success -> 0,
+    .failure -> 1,
+    .custom(code) -> code,
+}
+
+def exit(code: ExitCode) -> Void {
+    runtime.exit_process(code.into())
 }
