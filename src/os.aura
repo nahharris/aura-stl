@@ -1,0 +1,7 @@
+use runtime = "runtime";
+
+def ExitCode = enum(success, failure);
+
+def exit(code: Any) -> Void {
+    runtime.exit_process(0);
+}

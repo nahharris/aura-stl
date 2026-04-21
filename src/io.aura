@@ -1,57 +1,18 @@
-use (syscall_write, FileDescriptor) = "os";
+use runtime = "runtime";
 
-docs["
-# StdIO
-
-A `StdIO` is a file descriptor for standard input, output, and error.
-"]
-def StdIO = enum(in, out, err);
-
-def StdIO.into(self: StdIO) -> FileDescriptor {
-    .in -> 0,
-    .out -> 1,
-    .err -> 2,
-}
-
-def StdIO.from(other: FileDescriptor) -> StdIO {
-    0 -> .in,
-    1 -> .out,
-    2 -> .err,
-}
-
-docs["
-# print
-
-Prints a string to the standard output.
-"]
 def print(text: String) -> Void {
-    syscall_write(StdIO.out.into(), text);
+    runtime.write(1, runtime.bytes_from_string(text));
 }
 
-docs["
-# println
-
-Prints a string to the standard output followed by a newline.
-"]
 def println(text: String) -> Void {
     print(text);
     print("\n");
 }
 
-docs["
-# printerr
-
-Prints a string to the standard error.
-"]
 def printerr(text: String) -> Void {
-    syscall_write(StdIO.err.into(), text);
+    runtime.write(2, runtime.bytes_from_string(text));
 }
 
-docs["
-# printerrln
-
-Prints a string to the standard error followed by a newline.
-"]
 def printerrln(text: String) -> Void {
     printerr(text);
     printerr("\n");

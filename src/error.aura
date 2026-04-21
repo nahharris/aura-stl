@@ -1,7 +1,0 @@
-def Error = interface (error: Func[Self, String]);
-
-def GenericError = (message: String);
-
-def GenericError.error(self: GenericError) -> String {
-    self.message
-}

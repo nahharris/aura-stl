@@ -1,0 +1,12 @@
+def write(fd: Int, bytes: Bytes) -> Void {
+    syscall_write(fd, bytes);
+    ()
+}
+
+def bytes_from_string(text: String) -> Bytes {
+    string_into(text)
+}
+
+def exit_process(code: Int) -> Void {
+    syscall_exit(code)
+}

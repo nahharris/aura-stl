@@ -1,1 +1,0 @@
-def Default = interface (default: Func[Void, Self]);
