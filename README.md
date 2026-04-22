@@ -28,6 +28,6 @@ Higher-level behavior stays in Aura STL modules and must not bind kernel symbols
 
 ## Layout
 
-- `build.aura` - package manifest
+- `project.auon` - package manifest
 - `src/*.aura` - library modules
 - `src/*.test.aura` - unit-test modules
