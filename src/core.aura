@@ -1,0 +1,17 @@
+defstub syscall_exit: Func[(code: Int), Never];
+defstub syscall_write: Func[(fd: Int, bytes: Bytes), ISize];
+defstub bytes_new: Func[(size: USize), Bytes];
+defstub bytes_get: Func[(bytes: Bytes, index: USize), UInt8];
+defstub bytes_set: Func[(bytes: Bytes, index: USize, value: UInt8), Void];
+defstub string_into: Func[(text: String), Bytes];
+
+defstub if: Func[(cond: Bool, then: Func[(), Void]), Void];
+defstub[T] if: Func[(cond: Bool, then: Func[(), T], else: Func[(), T]), T];
+defstub[T] cases: Func[(when: Func[(), T]), T];
+defstub loop: Func[(do: Func[(), Void]), Never];
+defstub loop: Func[(while: Func[(), Bool], do: Func[(), Void]), Never];
+
+defstub[T] return: Macro[T, Never];
+defstub break: Macro[(), Never];
+defstub[T] break: Macro[T, Never];
+defstub continue: Macro[(), Never];

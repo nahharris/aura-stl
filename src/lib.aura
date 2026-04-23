@@ -1,3 +1,18 @@
+use (
+    syscall_exit,
+    syscall_write,
+    bytes_new,
+    bytes_get,
+    bytes_set,
+    string_into,
+    if,
+    cases,
+    loop,
+    return,
+    break,
+    continue
+) = "core";
+
 use (print, println, printerr, printerrln) = "io";
 use (Option, null) = "option";
 use (Result) = "result";

@@ -1,3 +1,5 @@
+use (syscall_exit, syscall_write, string_into) = "core";
+
 def write(fd: Int, bytes: Bytes) -> Void {
     syscall_write(fd, bytes);
     ()
