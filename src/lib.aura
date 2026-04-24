@@ -2,3 +2,7 @@ use (print, println, printerr, printerrln) = "io";
 use (Option, null) = "option";
 use (Result) = "result";
 use (ExitCode, exit) = "os";
+
+// RawAlloc[T], Slice[T], and Ref[T] are compiler-recognized opaque memory
+// handles available through the prelude. See "memory" for the documented
+// safe method surface; raw runtime helpers are intentionally not reexported.
