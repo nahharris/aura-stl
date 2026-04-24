@@ -11,4 +11,12 @@
 //   Ref[T].get()
 //   Ref[T].set(value)
 //
+// Internal representation (not Aura-accessible):
+//
+//   RawAlloc[T]  — (len: USize, elem_size: USize, elem_align: USize, storage: Vec<u8>)
+//   Slice[T]     — (alloc: &RawAlloc, start: USize, len: USize)
+//   Ref[T]       — (alloc: &RawAlloc, index: USize)
+//
+// List[T] is defined in "list" and wraps Slice[T] with a size field.
+//
 // This module intentionally does not define Aura-callable raw pointer stubs.
