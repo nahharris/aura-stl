@@ -1,0 +1,14 @@
+// Managed memory surface.
+//
+// RawAlloc[T], Slice[T], and Ref[T] are compiler-recognized opaque handle
+// types. Their public methods are lowered directly by the compiler:
+//
+//   RawAlloc[T].new(count)
+//   RawAlloc[T].slice()
+//   Slice[T].get(index)
+//   Slice[T].set(index, value)
+//   Slice[T].ref_at(index)
+//   Ref[T].get()
+//   Ref[T].set(value)
+//
+// This module intentionally does not define Aura-callable raw pointer stubs.

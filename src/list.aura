@@ -1,0 +1,5 @@
+def[T] List[T] = (size: USize, slice: Slice[T]);
+
+def[T] List[T].new() -> List[T] {
+    return (0, Slice[T].new());
+}
