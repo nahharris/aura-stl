@@ -1,0 +1,17 @@
+defstub aura_panic: Func[(message: String), Void];
+defstub aura_catch_begin: Func[(), Void];
+defstub aura_catch_end: Func[(), Int];
+defstub aura_panic_set_hook: Func[(message: String), Void];
+defstub syscall_exit: Func[(code: Int), Never];
+
+def Panic = enum(str: String);
+
+def panic(message: String) -> Never {
+    aura_panic(message);
+    syscall_exit(1)
+}
+
+def set_hook(hook: Func[(message: String), Void]) -> Void {
+    aura_panic_set_hook("enabled");
+    ()
+}
