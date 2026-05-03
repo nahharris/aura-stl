@@ -1,0 +1,2 @@
+// Top type: every value is assignable to the empty interface (stdlib `Any`).
+def Any = interface();
