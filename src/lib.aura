@@ -15,6 +15,7 @@ use (Option, null) = "option";
 use (Result) = "result";
 use (ExitCode, exit) = "os";
 use (List) = "list";
+use (Any) = "any";
 use (Panic, panic, set_hook) = "panic";
 
 // RawAlloc[T], Slice[T], and Ref[T] are compiler-recognized opaque memory
