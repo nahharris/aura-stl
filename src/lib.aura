@@ -17,6 +17,7 @@ use (print, println, printerr, printerrln) = "io";
 use (Option, null) = "option";
 use (Result) = "result";
 use (ExitCode, exit) = "os";
+use (List) = "list";
 
 // RawAlloc[T], Slice[T], and Ref[T] are compiler-recognized opaque memory
 // handles available through the prelude. See "memory" for the documented

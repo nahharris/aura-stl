@@ -1,5 +1,31 @@
-def[T] List[T] = (size: USize, slice: Slice[T]);
+def[T] List = (length: USize, capacity: USize, slice: Slice[T]);
 
 def[T] List[T].new() -> List[T] {
-    return (0, Slice[T].new());
+    return (length = 0, capacity = 1, slice = RawAlloc[T].new(1).slice());
+}
+
+def[T] List[T].push(self: List[T], value: T) -> Void {
+    if (self.length < self.capacity) then {
+        self.slice.set(self.length, value);
+    } else {
+        let newCap = self.capacity * 2;
+        let newSlice = RawAlloc[T].new(newCap).slice();
+        let i = 0;
+        loop while { i < self.length } do {
+            newSlice.set(i, self.slice.get(i));
+            i = i + 1;
+        }
+        newSlice.set(self.length, value);
+        self.slice = newSlice;
+        self.capacity = newCap;
+    }
+    self.length += 1;
+}
+
+def[T] List[T].get(self: List[T], index: USize) -> Option[T] {
+    self.slice.get(index)
+}
+
+def[T] List[T].set(self: List[T], index: USize, value: T) -> Bool {
+    self.slice.set(index, value)
 }
