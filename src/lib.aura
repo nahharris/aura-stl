@@ -7,10 +7,7 @@ use (
     string_into,
     if,
     cases,
-    loop,
-    return,
-    break,
-    continue
+    loop
 ) = "core";
 
 use (print, println, printerr, printerrln) = "io";

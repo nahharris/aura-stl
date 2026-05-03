@@ -1,3 +1,5 @@
+use (Option) = "option";
+
 def[T] List = (length: USize, capacity: USize, slice: Slice[T]);
 
 def[T] List[T].new() -> List[T] {
@@ -10,9 +12,9 @@ def[T] List[T].push(self: List[T], value: T) -> Void {
     } else {
         let newCap = self.capacity * 2;
         let newSlice = RawAlloc[T].new(newCap).slice();
-        let i = 0;
+        let i = self.length - self.length;
         loop while { i < self.length } do {
-            newSlice.set(i, self.slice.get(i));
+            newSlice.set(i, self.slice.get(i)!!);
             i = i + 1;
         }
         newSlice.set(self.length, value);
@@ -20,6 +22,7 @@ def[T] List[T].push(self: List[T], value: T) -> Void {
         self.capacity = newCap;
     }
     self.length += 1;
+    ()
 }
 
 def[T] List[T].get(self: List[T], index: USize) -> Option[T] {
